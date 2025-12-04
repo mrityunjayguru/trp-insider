@@ -78,13 +78,13 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
 
 
         // Simple routing
-        if (path.equals("/user") && method.equals("GET")) {
+        if (path.equals("/Prod/user") && method.equals("GET")) {
             return response(200, "User endpoint hit!  Hi I am Niraj Also ");
         }
-        if (path.equals("/order") && method.equals("POST")) {
+        if (path.equals("/Prod/order") && method.equals("POST")) {
             return response(200, "Order created!");
         }
-        if (path.startsWith("/product/") && method.equals("GET")) {
+        if (path.startsWith("/Prod/product/") && method.equals("GET")) {
             String id = request.getPathParameters().get("id");
             return response(200, "Product ID: " + id);
         }

@@ -34,22 +34,22 @@ Resources:
         HelloWorld:
           Type: Api # More info about API Event Source: https://github.com/awslabs/serverless-application-model/blob/master/versions/2016-10-31.md#api
           Properties:
-            Path: /hello
+            Path: /Prod/hello
             Method: get
         UserAPI:
           Type: Api
           Properties:
-            Path: /user
+            Path: /Prod/user
             Method: GET
         OrderAPI:
           Type: Api
           Properties:
-            Path: /order
+            Path: /Prod/order
             Method: POST
         ProductAPI:
           Type: Api
           Properties:
-            Path: /product/{id}
+            Path: /Prod/product/{id}
             Method: GET
 
 
