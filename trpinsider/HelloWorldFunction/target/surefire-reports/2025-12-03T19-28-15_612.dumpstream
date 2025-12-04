@@ -1,0 +1,5 @@
+# Created at 2025-12-03T19:28:16.065
+Boot Manifest-JAR contains absolute paths in classpath 'D:\trpinsiderawslambda\trpinsider\HelloWorldFunction\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+
