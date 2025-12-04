@@ -31,22 +31,22 @@ Resources:
         HelloWorld:
           Type: Api
           Properties:
-            Path: /hello
+            Path: /Prod/hello
             Method: get
         UserAPI:
           Type: Api
           Properties:
-            Path: /user
+            Path: /Prod/user
             Method: GET
         OrderAPI:
           Type: Api
           Properties:
-            Path: /order
+            Path: /Prod/order
             Method: POST
         ProductAPI:
           Type: Api
           Properties:
-            Path: /product/{id}
+            Path: /Prod/product/{id}
             Method: GET
     Metadata:
       SamResourceId: HelloWorldFunction
