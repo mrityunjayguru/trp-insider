@@ -57,6 +57,7 @@ import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.sql.*;
 
 import com.amazonaws.services.lambda.runtime.Context;
 import com.amazonaws.services.lambda.runtime.RequestHandler;
@@ -75,12 +76,27 @@ public class App implements RequestHandler<APIGatewayProxyRequestEvent, APIGatew
 
         System.out.println(" Common Handler ");
 
+        System.out.println(" Common Handler ");
+        System.out.println(" Common Handler ");
+        System.out.println(" Common Handler ");
+        System.out.println(" Common Handler ");
+
+        this.getConnection();
 
 
         // Simple routing
         if (path.equals("/Prod/user") && method.equals("GET")) {
             return response(200, "User endpoint hit!  Hi I am Niraj Also ");
         }
+        if (path.equals("/Prod/createemployee") && method.equals("POST")) {
+         return  new CreateEmployeeHandler().handleRequest(request, context);
+            // return response(200, "User endpoint hit!  Hi I am Niraj Also ");
+        }
+        if (path.equals("/Prod/getallemployee") && method.equals("GET")) {
+         return  new CreateEmployeeHandler().getAllEmployee(request, context);
+       
+        }
+
         if (path.equals("/Prod/order") && method.equals("POST")) {
             return response(200, "Order created!");
         }
@@ -128,6 +144,41 @@ private String getPageContents(String address) throws IOException{
             return br.lines().collect(Collectors.joining(System.lineSeparator()));
         }
     }
+
+
+ private Connection getConnection(){
+
+    String host = "13.203.239.58";
+        String dbName = "trpinsiderdb";
+        String user = "postgres";
+        String password = "traccar@1234";
+        String port =  "5432";
+
+        String url = "jdbc:postgresql://" + host + ":" + port + "/" + dbName;
+
+        System.out.println("URL "+url);
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+
+            PreparedStatement stmt = conn.prepareStatement("SELECT NOW()");
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                System.out.println("PostgreSQL Time: " + rs.getString(1));
+            
+                return conn;
+            }
+
+        } catch (Exception e) {
+            System.out.println( "Error: " + e.getMessage());
+            return null;
+        }
+
+        return null;
+    }
+
+    
+    
 
 
 }

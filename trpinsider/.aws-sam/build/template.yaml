@@ -48,6 +48,16 @@ Resources:
           Properties:
             Path: /Prod/product/{id}
             Method: GET
+        EmployeeAPI:
+          Type: Api
+          Properties:
+            Path: /Prod/createemployee
+            Method: POST
+        EmployeeAPIGetAll:
+          Type: Api
+          Properties:
+            Path: /Prod/getallemployee
+            Method: GET
     Metadata:
       SamResourceId: HelloWorldFunction
 Outputs:
