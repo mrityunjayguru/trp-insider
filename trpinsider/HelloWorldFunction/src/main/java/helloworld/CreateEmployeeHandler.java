@@ -23,6 +23,11 @@ public class CreateEmployeeHandler
 
 {
     private ObjectMapper mapper = new ObjectMapper();
+    private static final Map<String, String> corsHeaders = Map.of(
+    "Access-Control-Allow-Origin", "*",
+    "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
+    "Access-Control-Allow-Headers", "Content-Type"
+);
 
     
     public APIGatewayProxyResponseEvent getAllEmployee(APIGatewayProxyRequestEvent request, Context context) {
@@ -86,7 +91,11 @@ mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 String body = request.getBody();
 if (body == null || body.isEmpty()) {
-    throw new RuntimeException("Request body is empty");
+     return new APIGatewayProxyResponseEvent()
+                    .withStatusCode(500)
+                    .withHeaders(corsHeaders)
+        .withBody("Niraj: Request Body is empty");
+
 }
 
 Employee employee = mapper.readValue(body, Employee.class);
@@ -117,22 +126,14 @@ Employee employee = mapper.readValue(body, Employee.class);
 
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
-                    .withBody("Employee saved successfully")
-                    .withHeaders(Map.of(
-            "Access-Control-Allow-Origin", "*",
-            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
-            "Access-Control-Allow-Headers", "Content-Type,Authorization"
-        ));
+                    .withHeaders(corsHeaders).withBody("Niraj Employee created successfully");
+
 
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(500)
-                    .withBody("Error: " + e.getMessage())
-                    .withHeaders(Map.of(
-            "Access-Control-Allow-Origin", "*",
-            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
-            "Access-Control-Allow-Headers", "Content-Type,Authorization"
-        ));
+                    
+                    .withHeaders(corsHeaders).withBody("Niraj from daabase Error: " + e.getMessage());
         }
     }
 
