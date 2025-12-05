@@ -54,13 +54,20 @@ public class CreateEmployeeHandler
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(200)
                 .withBody(jsonResponse)
-                .withHeaders(Map.of("Content-Type", "application/json"));
-
+                .withHeaders(Map.of(
+            "Access-Control-Allow-Origin", "*",
+            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
+            "Access-Control-Allow-Headers", "Content-Type,Authorization"
+        ));
     } catch (Exception e) {
         return new APIGatewayProxyResponseEvent()
                 .withStatusCode(500)
                 .withBody("Error: " + e.getMessage())
-                .withHeaders(Map.of("Content-Type", "application/json"));
+                .withHeaders(Map.of(
+            "Access-Control-Allow-Origin", "*",
+            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
+            "Access-Control-Allow-Headers", "Content-Type,Authorization"
+        ));
 
     }
     finally{
@@ -110,12 +117,22 @@ Employee employee = mapper.readValue(body, Employee.class);
 
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(200)
-                    .withBody("Employee saved successfully");
+                    .withBody("Employee saved successfully")
+                    .withHeaders(Map.of(
+            "Access-Control-Allow-Origin", "*",
+            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
+            "Access-Control-Allow-Headers", "Content-Type,Authorization"
+        ));
 
         } catch (Exception e) {
             return new APIGatewayProxyResponseEvent()
                     .withStatusCode(500)
-                    .withBody("Error: " + e.getMessage());
+                    .withBody("Error: " + e.getMessage())
+                    .withHeaders(Map.of(
+            "Access-Control-Allow-Origin", "*",
+            "Access-Control-Allow-Methods", "GET,POST,OPTIONS",
+            "Access-Control-Allow-Headers", "Content-Type,Authorization"
+        ));
         }
     }
 
